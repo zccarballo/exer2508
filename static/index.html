@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form id="formulario">
+        <input type="text" name="nome" placeholder="Nome">
+        <input type="text" name="email" placeholder="Email">
+        <button id="botonEnviar">Enviar</button>
+    </form>
+    <div id="mensagem"></div>
+    <script>
+        botonEnviar.addEventListener("click",async (e)=>{
+            e.preventDefault();
+            //const {nome, email} = formulario;// desesctructura o obxeto de entrada
+            //console.log(nome.value, email.value);// imprime os valores do formulario
+
+            let datosFormulario = new FormData(formulario);
+            let entradas = Object.fromEntries(datosFormulario.entries());
+            
+            console.log(JSON.stringify(entradas))
+            
+            let obxetoEnvio = {
+                method: "POST",
+                headers:{
+                    "Content-type":"application/json"
+                },
+                body: JSON.stringify(entradas)
+            }
+            let respostaServer = await fetch("/acceso", obxetoEnvio) 
+
+            let resposta = await respostaServer.json();
+            console.log(resposta);
+            
+
+            if(resposta.resposta == "acceso autorizado"){
+                console.log("iremos a app")
+                
+                localStorage.setItem("token",resposta.tokenUsuario)
+                location.replace("/app");
+            }else{
+                console.log(resposta.resposta);
+                mensagem.innerHTML = resposta.resposta;
+            }
+        })
+    </script>
+</body>
+</html>
