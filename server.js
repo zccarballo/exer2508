@@ -6,6 +6,7 @@ const { isUser } = require ("./1.MIDDELWARES/USUARIOS");
 const paxinas = require ("./2.Datos/datos.paxinas");
 const app = express();
 
+
 //UTILIZO DOTENV: para iso debo escribir a seguinte liña
 require('dotenv').config();
 
@@ -23,9 +24,13 @@ app.get("/app",(req,res)=>{
     res.sendFile(path.join(__dirname, "static/views/app.html"));
 })
 
-app.get("/paxina-app", isUser, (req,res)=>{
-    res.status(200).send(paxinas.app)
-})
+app.get("/paxina-app", isUser)
+app.get("/tarefas", isUser, (req,res)=>{
+    res.sendFile(path.join(__dirname, "static/views/tarefas.html"));
+} )
+app.post('/usuarios', (req, res) => {
+  // Lógica para crear usuario
+});
 
 //START SERVER
 app.listen(3000, function () {

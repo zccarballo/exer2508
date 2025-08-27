@@ -1,5 +1,5 @@
 const paxinas = {
-    app: ` <div class="caixa">
+    app: `<div class="caixa">
       <div class="img"></div>
     </div>
     <div class="container">
@@ -65,6 +65,15 @@ const paxinas = {
         </form>
       </div>
     </div>
-    <button id="sair">Sair</button>`
+    <button id="sair">Sair</button>`,
+    usuario:`<!-- TAREFAS ASIGNADAS -->
+    <h2>LISTA DE TAREFAS</h2>
+    <div id="tarefasContainer"></div>
+    <h3>Nova tarefa</h3>
+    <form id="formNovaTarefa">
+        <input type="text" id="novaTarefa" placeholder="Escribe unha nova tarefa" required />
+        <button type="submit">Engadir</button>
+    </form>`,
+   
 }
 module.exports = paxinas
