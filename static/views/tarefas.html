@@ -1,11 +1,74 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>USUARIOS E TAREFAS</title>
 </head>
 <body>
-    estou na paxina de tarefas
+
+    <h2>Nova Tarefa</h2>
+    
+    <!-- Contenedor para las tareas -->
+    <div id="container"></div>
+
+    <!-- Input para agregar una nueva tarea -->
+    <input type="text" id="inputTarefa" placeholder="Escribe una nueva tarea">
+    <button id="btnAgregar">Agregar tarea</button>
+
+    <script>
+        // Selección de los elementos del DOM
+        const input = document.getElementById("inputTarefa");
+        const btnAgregar = document.getElementById("btnAgregar");
+        const container = document.getElementById("container");
+
+        // Función para agregar una nueva tarea
+        btnAgregar.addEventListener("click", () => {
+            // Crear tarefa
+            const tarefaTexto = input.value;
+            if (tarefaTexto.trim() === "") return; // No agregar tarea vacía
+
+            const tarefaDiv = document.createElement("div");
+            tarefaDiv.classList.add("tarefa");
+
+            const span = document.createElement("span");
+            span.textContent = tarefaTexto;
+
+            // Botón "Enviado"
+            const btnEnviado = document.createElement("button");
+            btnEnviado.textContent = "Enviado";
+            btnEnviado.addEventListener("click", () => {
+                span.style.textDecoration = "line-through";
+                span.style.color = "green";
+            });
+
+            // Botón "Editar"
+            const btnEditar = document.createElement("button");
+            btnEditar.textContent = "Editar";
+            btnEditar.addEventListener("click", () => {
+                const novoTexto = prompt("Editar tarea:", span.textContent);
+                if (novoTexto !== null && novoTexto.trim() !== "") {
+                    span.textContent = novoTexto;
+                }
+            });
+
+            // Botón "Borrar"
+            const btnBorrar = document.createElement("button");
+            btnBorrar.textContent = "Borrar";
+            btnBorrar.addEventListener("click", () => {
+                tarefaDiv.remove();
+            });
+
+            // Agregar elementos a la tarea
+            tarefaDiv.appendChild(span);
+            tarefaDiv.appendChild(btnEnviado);
+            tarefaDiv.appendChild(btnEditar);
+            tarefaDiv.appendChild(btnBorrar);
+            container.appendChild(tarefaDiv);
+
+            // Limpiar el input
+            input.value = "";
+        });
+    </script>
 </body>
 </html>

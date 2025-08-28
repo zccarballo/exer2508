@@ -8,7 +8,54 @@
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <script type="module" src="../javascript/index.js"></script>
+    <h2>REXISTRO USUARIOS</h2>
+    <form id="formulario">
+        <input type="text" name="nome" placeholder="Nome">
+        <input type="text" name="email" placeholder="Email">
+        <button id="botonEnviar">Enviar</button>
+    </form>
+    <div id="mensagem"></div> 
+
+       <script type="module" src="../javascript/index.js">
+      // FORMULARIO PARA REXISTRARSE E PODER TER TAREFAS ASIGNADAS
+         formRexistro.addEventListener("submit", async (e) => {
+              e.preventDefault();
+
+             const nome = document.getElementById('nome').value;
+             const email = document.getElementById('email').value;
+             const contrasinal = document.getElementById('contrasinal').value;
+
+             try {
+                 const resposta = await fetch('http://localhost:3000/usuarios', {
+                 method: 'POST',
+                 headers: {
+                     'Content-Type': 'application/json'
+                 },
+                 body: JSON.stringify({ nome, email, contrasinal })
+                 });
+
+                 const datos = await resposta.json();
+
+                 if (resposta.ok) {
+                 document.getElementById('rexistroResultado').innerText = 'Usuario creado correctamente!';
+                 } else {
+                 document.getElementById('rexistroResultado').innerText = 'Erro: ' + datos.mensaxe;
+                 }
+             } catch (erro) {
+                 console.error(erro);
+                 document.getElementById('rexistroResultado').innerText = 'Erro ao conectar co servidor.';
+             }
+             });
+
+             const form = document.getElementById("formNovaTarefa");
+     const input = document.getElementById("novaTarefa");
+     const container = document.getElementById("tarefasContainer");
+
+    form.addEventListener("submit", function(e) {
+       e.preventDefault();
+      })
+
+    </script>
   </body>
 </html>
 

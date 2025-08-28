@@ -20,14 +20,22 @@ app.use(express.static(path.join(__dirname, "static")));
 ////PETICIONS
 
 app.post("/acceso", accesoUser);
-app.get("/app",(req,res)=>{
-    res.sendFile(path.join(__dirname, "static/views/app.html"));
-})
 
-app.get("/paxina-app", isUser)
-app.get("/tarefas", isUser, (req,res)=>{
+app.get("/app", isUser, (req, res) => {
+    res.sendFile(path.join(__dirname, "static/views/app.html"));
+});
+
+app.get("/tarefas", isUser, (req, res) => {
     res.sendFile(path.join(__dirname, "static/views/tarefas.html"));
-} )
+});
+// app.get("/app",(req,res)=>{
+//     res.sendFile(path.join(__dirname, "static/views/app.html"));
+// })
+
+// app.get("/paxina-app", isUser)
+// app.get("/tarefas", isUser, (req,res)=>{
+//     res.sendFile(path.join(__dirname, "static/views/tarefas.html"));
+// } )
 app.post('/usuarios', (req, res) => {
   // Lógica para crear usuario
 });

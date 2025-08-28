@@ -82,3 +82,21 @@ form {
   border-radius: 4px;
   font-size: 15px;
 }
+
+
+/* Tarefas CSS */
+
+        .tarefa {
+            display: flex;
+            align-items: center;
+            margin: 10px 0;
+        }
+        .tarefa span {
+            margin-right: 10px;
+            flex-grow: 1;
+        }
+        .tarefa button {
+            margin: 0 5px;
+            padding: 5px 10px;
+            cursor: pointer;
+        }

@@ -43,7 +43,7 @@ if (!token) {
     location.replace("/");
     return;
   }
-   let resposta = await fetch("http://localhost:3000/paxina-app", {
+   let resposta = await fetch("http://localhost:3000/app", {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -58,42 +58,45 @@ if (!token) {
 export const isPaxina = async (resposta) =>{
 
 
-  if (resposta.status === 200 && resposta.resposta === "acceso autorizado") {
+  // if (resposta.status === 200 && resposta.resposta === "acceso autorizado") {
+  //   let datos = await resposta.text();
+  //   console.log("datos ", datos);
+  //   document.body.innerHTML = datos;
+
+  //   sair.addEventListener("click",()=>{
+  //       console.log("sair")
+  //       localStorage.removeItem("usuario");
+  //       location.replace("/");
+  //   })
+    
+  //   const formulario = document.querySelector("form");
+  //   insertarDatos(formulario);
+
+  // } else if (resposta.status === 200 && resposta.resposta === "acceso autorizado a tarefas") {
+  //   location.replace("/tarefas");
+
+  // } else {
+  //   location.replace("/");
+  // }
+  // }
+
+  if (resposta.status === 200) {
     let datos = await resposta.text();
-    console.log("datos ", datos);
     document.body.innerHTML = datos;
 
-    sair.addEventListener("click",()=>{
-        console.log("sair")
+    const sair = document.getElementById("sair");
+    if (sair) {
+      sair.addEventListener("click", () => {
         localStorage.removeItem("usuario");
         location.replace("/");
-    })
-    
+      });
+    }
+
     const formulario = document.querySelector("form");
-    insertarDatos(formulario);
-
-  } else if (resposta.status === 200 && resposta.resposta === "acceso autorizado a tarefas") {
-    location.replace("/tarefas");
-
+    if (formulario) {
+      insertarDatos(formulario);
+    }
   } else {
     location.replace("/");
   }
-  }
-
-  /*if (resposta.status === 200) {
-    let datos = await resposta.text();
-    console.log("datos ", datos);
-    document.body.innerHTML = datos;
-
-    sair.addEventListener("click",()=>{
-        console.log("sair")
-        localStorage.removeItem("usuario");
-        location.replace("/");
-    })
-    
-    const formulario = document.querySelector("form");
-    insertarDatos(formulario);
-
-  } else {
-    location.replace("/");
-  }*/
+}
