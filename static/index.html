@@ -53,82 +53,82 @@
             }
         })
     // FORMULARIO PARA REXISTRARSE E PODER TER TAREFAS ASIGNADAS
-        formRexistro.addEventListener("submit", async (e) => {
-             e.preventDefault();
+    //     formRexistro.addEventListener("submit", async (e) => {
+    //          e.preventDefault();
 
-            const nome = document.getElementById('nome').value;
-            const email = document.getElementById('email').value;
-            const contrasinal = document.getElementById('contrasinal').value;
+    //         const nome = document.getElementById('nome').value;
+    //         const email = document.getElementById('email').value;
+    //         const contrasinal = document.getElementById('contrasinal').value;
 
-            try {
-                const resposta = await fetch('http://localhost:3000/usuarios', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ nome, email, contrasinal })
-                });
+    //         try {
+    //             const resposta = await fetch('http://localhost:3000/usuarios', {
+    //             method: 'POST',
+    //             headers: {
+    //                 'Content-Type': 'application/json'
+    //             },
+    //             body: JSON.stringify({ nome, email, contrasinal })
+    //             });
 
-                const datos = await resposta.json();
+    //             const datos = await resposta.json();
 
-                if (resposta.ok) {
-                document.getElementById('rexistroResultado').innerText = 'Usuario creado correctamente!';
-                } else {
-                document.getElementById('rexistroResultado').innerText = 'Erro: ' + datos.mensaxe;
-                }
-            } catch (erro) {
-                console.error(erro);
-                document.getElementById('rexistroResultado').innerText = 'Erro ao conectar co servidor.';
-            }
-            });
+    //             if (resposta.ok) {
+    //             document.getElementById('rexistroResultado').innerText = 'Usuario creado correctamente!';
+    //             } else {
+    //             document.getElementById('rexistroResultado').innerText = 'Erro: ' + datos.mensaxe;
+    //             }
+    //         } catch (erro) {
+    //             console.error(erro);
+    //             document.getElementById('rexistroResultado').innerText = 'Erro ao conectar co servidor.';
+    //         }
+    //         });
 
-            const form = document.getElementById("formNovaTarefa");
-    const input = document.getElementById("novaTarefa");
-    const container = document.getElementById("tarefasContainer");
+    //         const form = document.getElementById("formNovaTarefa");
+    // const input = document.getElementById("novaTarefa");
+    // const container = document.getElementById("tarefasContainer");
 
-    form.addEventListener("submit", function(e) {
-        e.preventDefault();
+    // form.addEventListener("submit", function(e) {
+    //     e.preventDefault();
 
-        // Crear tarefa
-        const tarefaTexto = input.value;
-        const tarefaDiv = document.createElement("div");
-        tarefaDiv.classList.add("tarefa");
+    //     // Crear tarefa
+    //     const tarefaTexto = input.value;
+    //     const tarefaDiv = document.createElement("div");
+    //     tarefaDiv.classList.add("tarefa");
 
-        const span = document.createElement("span");
-        span.textContent = tarefaTexto;
+    //     const span = document.createElement("span");
+    //     span.textContent = tarefaTexto;
 
-        // Botóns
-        const btnEnviado = document.createElement("button");
-        btnEnviado.textContent = "Enviado";
-        btnEnviado.addEventListener("click", () => {
-            span.style.textDecoration = "line-through";
-            span.style.color = "green";
-        });
+    //     // Botóns
+    //     const btnEnviado = document.createElement("button");
+    //     btnEnviado.textContent = "Enviado";
+    //     btnEnviado.addEventListener("click", () => {
+    //         span.style.textDecoration = "line-through";
+    //         span.style.color = "green";
+    //     });
 
-        const btnEditar = document.createElement("button");
-        btnEditar.textContent = "Editar";
-        btnEditar.addEventListener("click", () => {
-            const novoTexto = prompt("Editar tarefa:", span.textContent);
-            if (novoTexto !== null && novoTexto.trim() !== "") {
-                span.textContent = novoTexto;
-            }
-        });
+    //     const btnEditar = document.createElement("button");
+    //     btnEditar.textContent = "Editar";
+    //     btnEditar.addEventListener("click", () => {
+    //         const novoTexto = prompt("Editar tarefa:", span.textContent);
+    //         if (novoTexto !== null && novoTexto.trim() !== "") {
+    //             span.textContent = novoTexto;
+    //         }
+    //     });
 
-        const btnBorrar = document.createElement("button");
-        btnBorrar.textContent = "Borrar";
-        btnBorrar.addEventListener("click", () => {
-            tarefaDiv.remove();
-        });
+    //     const btnBorrar = document.createElement("button");
+    //     btnBorrar.textContent = "Borrar";
+    //     btnBorrar.addEventListener("click", () => {
+    //         tarefaDiv.remove();
+    //     });
 
-        // Engadir elementos
-        tarefaDiv.appendChild(span);
-        tarefaDiv.appendChild(btnEnviado);
-        tarefaDiv.appendChild(btnEditar);
-        tarefaDiv.appendChild(btnBorrar);
-        container.appendChild(tarefaDiv);
+    //     // Engadir elementos
+    //     tarefaDiv.appendChild(span);
+    //     tarefaDiv.appendChild(btnEnviado);
+    //     tarefaDiv.appendChild(btnEditar);
+    //     tarefaDiv.appendChild(btnBorrar);
+    //     container.appendChild(tarefaDiv);
 
-        input.value = "";
-    });
+    //     input.value = "";
+    // });
     </script>
 </body>
 </html>

@@ -72,12 +72,12 @@ export const isPaxina = async (resposta) =>{
     const formulario = document.querySelector("form");
     insertarDatos(formulario);
 
+  } else if (resposta.status === 200 && resposta.resposta === "acceso autorizado a tarefas") {
+    location.replace("/tarefas");
+
   } else {
     location.replace("/");
-    if (resposta.status === 200 && resposta.resposta === "acceso autorizado a tarefas") {
-
-      location.replace("/tarefas");
-    }
+  }
   }
 
   /*if (resposta.status === 200) {
@@ -97,4 +97,3 @@ export const isPaxina = async (resposta) =>{
   } else {
     location.replace("/");
   }*/
-}
